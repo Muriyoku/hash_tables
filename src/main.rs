@@ -8,23 +8,7 @@ fn main() {
     insert_or_incress_fruit_value("barry".to_string(), &mut fruits);
     insert_or_incress_fruit_value("apple".to_string(), &mut fruits);
 
-    let words: Vec<String> = vec![
-        "rust".to_string(),
-        "hashmap".to_string(),
-        "rust".to_string(),
-        "exercise".to_string(),
-    ];
-
-    let mut word_couter_hashmap: HashMap<String, i32> = HashMap::new();
-
-    for w in words { 
-        word_couter_hashmap.entry(w)
-        .and_modify(|c| *c += 1)
-        .or_insert(1);
-    }
-
-    println!("{:?}", word_couter_hashmap);
-
+    word_counter();
 
     let mut remove_fruits_hash: HashMap<String, f64> = HashMap::new();
 
@@ -54,4 +38,22 @@ fn remove_fruits(fruit: String, list: &mut HashMap<String, f64>) {
         Some(_) => println!("Removed {} successfully", fruit), 
         None => println!("Item was not found"),
     }
+}
+fn word_counter() {
+    let words: Vec<String> = vec![
+        "rust".to_string(),
+        "hashmap".to_string(),
+        "rust".to_string(),
+        "exercise".to_string(),
+    ];
+
+    let mut word_couter_hashmap: HashMap<String, i32> = HashMap::new();
+
+    for w in words { 
+        word_couter_hashmap.entry(w)
+        .and_modify(|c| *c += 1)
+        .or_insert(1);
+    }
+
+    println!("{:?}", word_couter_hashmap);
 }
