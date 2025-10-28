@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap};
 
 fn main() {
     let mut vote: HashMap<String, bool> = HashMap::new();
@@ -13,6 +13,33 @@ fn main() {
     insert_or_incress_fruit_value("apple".to_string(), &mut fruits);
     insert_or_incress_fruit_value("barry".to_string(), &mut fruits);
     insert_or_incress_fruit_value("apple".to_string(), &mut fruits);
+
+    let words: Vec<String> = vec![
+        "rust".to_string(),
+        "hashmap".to_string(),
+        "rust".to_string(),
+        "exercise".to_string(),
+    ];
+
+    let mut word_couter_hashmap: HashMap<String, i32> = HashMap::new();
+
+    for w in words { 
+        word_couter_hashmap.entry(w)
+        .and_modify(|c| *c += 1)
+        .or_insert(1);
+    }
+
+    println!("{:?}", word_couter_hashmap);
+
+
+    let mut remove_fruits_hash: HashMap<String, f64> = HashMap::new();
+
+    remove_fruits_hash.insert("orange".to_string(), 1.0);
+    remove_fruits_hash.insert("banana".to_string(), 4.0);
+    remove_fruits_hash.insert("berry".to_string(), 2.0);
+
+    remove_fruits("orange".to_string(), &mut remove_fruits_hash);
+    remove_fruits("apple".to_string(), &mut remove_fruits_hash);
 }
 
 fn voted(list: &mut HashMap<String, bool>, name: String) -> bool {
@@ -27,7 +54,6 @@ fn voted(list: &mut HashMap<String, bool>, name: String) -> bool {
 
     false 
 }
-
 fn insert_or_incress_fruit_value(fruit: String, list: &mut HashMap<String, f64>) {
     if list.contains_key(&fruit) {
         list.entry(fruit.clone()).and_modify(|p| *p += 1.0);
@@ -40,4 +66,11 @@ fn insert_or_incress_fruit_value(fruit: String, list: &mut HashMap<String, f64>)
 
         println!("Fruit: {} added with price: {}", fruit, price);
     };
+}
+
+fn remove_fruits(fruit: String, list: &mut HashMap<String, f64>) {
+    match list.remove(&fruit) {
+        Some(_) => println!("Removed {} successfully", fruit), 
+        None => println!("Item was not found"),
+    }
 }
