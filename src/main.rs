@@ -12,6 +12,8 @@ fn main() {
 
     remove_fruits("orange".to_string(), &mut fruits);
     remove_fruits("apple".to_string(), &mut fruits);
+
+    show_all_fruits(&mut fruits);
 }
 
 fn insert_or_incress_fruit_value(fruit: String, list: &mut HashMap<String, f64>) {
@@ -51,3 +53,10 @@ fn word_counter() {
 
     println!("{:?}", word_couter_hashmap);
 }
+
+fn show_all_fruits(list: &mut HashMap<String, f64>) {
+    for (f, p) in list {
+        println!("{} value is ${}", f, p);
+    }
+}
+
