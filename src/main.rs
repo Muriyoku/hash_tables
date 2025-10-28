@@ -1,12 +1,6 @@
 use std::{collections::HashMap};
 
 fn main() {
-    let mut vote: HashMap<String, bool> = HashMap::new();
-
-    voted(&mut vote, String::from("Murilo"));
-    voted(&mut vote, String::from("Emilly"));
-    voted(&mut vote, String::from("Murilo"));
-
     let mut fruits: HashMap<String, f64> = HashMap::new();
 
     insert_or_incress_fruit_value("banana".to_string(), &mut fruits);
@@ -42,18 +36,6 @@ fn main() {
     remove_fruits("apple".to_string(), &mut remove_fruits_hash);
 }
 
-fn voted(list: &mut HashMap<String, bool>, name: String) -> bool {
-    
-    if list.contains_key(&name) {
-        println!("You already voted: {}", name);
-        return true; 
-    } else {
-        println!("Ok, it's finished, {}!", name);
-        list.insert(name, true);
-    }
-
-    false 
-}
 fn insert_or_incress_fruit_value(fruit: String, list: &mut HashMap<String, f64>) {
     if list.contains_key(&fruit) {
         list.entry(fruit.clone()).and_modify(|p| *p += 1.0);
@@ -67,7 +49,6 @@ fn insert_or_incress_fruit_value(fruit: String, list: &mut HashMap<String, f64>)
         println!("Fruit: {} added with price: {}", fruit, price);
     };
 }
-
 fn remove_fruits(fruit: String, list: &mut HashMap<String, f64>) {
     match list.remove(&fruit) {
         Some(_) => println!("Removed {} successfully", fruit), 
