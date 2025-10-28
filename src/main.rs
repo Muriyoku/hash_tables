@@ -10,14 +10,8 @@ fn main() {
 
     word_counter();
 
-    let mut remove_fruits_hash: HashMap<String, f64> = HashMap::new();
-
-    remove_fruits_hash.insert("orange".to_string(), 1.0);
-    remove_fruits_hash.insert("banana".to_string(), 4.0);
-    remove_fruits_hash.insert("berry".to_string(), 2.0);
-
-    remove_fruits("orange".to_string(), &mut remove_fruits_hash);
-    remove_fruits("apple".to_string(), &mut remove_fruits_hash);
+    remove_fruits("orange".to_string(), &mut fruits);
+    remove_fruits("apple".to_string(), &mut fruits);
 }
 
 fn insert_or_incress_fruit_value(fruit: String, list: &mut HashMap<String, f64>) {
